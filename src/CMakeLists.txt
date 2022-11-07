@@ -5,6 +5,18 @@ else()
 endif()
 
 
+## Add address sanatizers for debug build only!
+if (CMAKE_BUILD_TYPE STREQUAL "Debug")
+  add_sanitizers(lab)
+  set_target_properties(lab PROPERTIES DEBUG_POSTFIX ${CMAKE_DEBUG_POSTFIX})
+endif (CMAKE_BUILD_TYPE STREQUAL "Debug")
+
+
+
+find_package(Readline)
+target_link_libraries(lab PRIVATE readline)
+
+
 include(GenerateExportHeader)
 generate_export_header(lab)
 configure_file(labconfig.h.in labconfig.h)
@@ -19,7 +31,7 @@ target_compile_options(lab PRIVATE
   "$<$<NOT:$<CXX_COMPILER_ID:MSVC>>:-Wall;-Wextra;-Werror;-pedantic;>"
 )
 
-add_sanitizers(lab)
+
 
 add_executable(myprogram main.cpp)
 target_link_libraries(myprogram PRIVATE lab)
