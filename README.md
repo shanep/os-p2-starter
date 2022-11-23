@@ -1,5 +1,7 @@
 # Project 2
 
+ ![Project Meme](meme.jpg)
+
 In this project, we will be implementing a simple shell using the examples that
 were presented in [chapter
 5](https://pages.cs.wisc.edu/~remzi/OSTEP/cpu-api.pdf). This assignment can only
